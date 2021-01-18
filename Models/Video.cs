@@ -1,0 +1,31 @@
+using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace ReactTube.Models
+{
+    public class Video
+    {
+        [Key]
+        public Guid VideoId { get; set; }
+        //public int VideoId { get; set; }
+        [Required]
+        [MaxLength(255)]
+        public string name { get; set; }
+        [MaxLength(1024)]
+        public string desc { get; set; }
+        [Required]
+        [MaxLength(255)]
+        public string path { get; set; }
+
+        public int views { get; set; }
+        [MaxLength(255)]
+        public string thumbnailPath { get; set; }
+        [Required]
+        public int UserId { get; set; }
+        [Required]
+        public int Likes { get; set; }
+        [Required]
+        public int Dislikes { get; set; }
+
+    }
+}
