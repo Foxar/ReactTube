@@ -1,0 +1,201 @@
+div.App {
+  background-color: #2c3741;
+  min-height: 1280px;
+}
+
+
+
+div.header {
+  background-color:#3a4652;
+  display:table;
+  width: 100%;
+  min-height: 75px;
+  position: fixed;
+  top:0;
+  z-index: 1;
+}
+
+div.headerRow {
+  display:table-row;
+}
+
+div.headerCell{
+  display:table-cell;
+  padding-top: 7px;
+  vertical-align: top;
+  width: 33%;
+}
+
+div.headerCell div.searchInput {
+  width: 100%;
+}
+
+
+div.headerCell > .MuiInputBase-root{
+  width:100%;
+}
+
+div.headerProfile {
+  padding-right:0;
+  margin: 0 !important;
+  vertical-align: middle;
+  text-align: right;
+  
+}
+
+div.avatarDiv {
+  display: inline-block;
+  width: 40px;
+  margin-right:4em;
+}
+
+div.searchInput div.MuiInputBase-root {
+  background-color: #475664;
+} 
+
+
+
+
+
+
+div.component_videoplayer {
+  text-align:left;
+  background-color: black;
+  display: inline-block;
+}
+
+div.videoPage{
+  margin-left: 5em;
+  min-height: 1280px;
+  display: flex;
+  flex-direction: row;
+}
+
+div.videoPage h1 {
+  margin-top: 5px;
+}
+div.videoSection {
+  margin-top: 6em;
+  display:inline-block;
+  overflow: hidden;
+  background-color:#3a4652;
+
+}
+
+div.component_videoplayer div#playbackbuttons {
+  background-color: gray;
+}
+div.videoProgressBar{
+  background-color: whitesmoke;
+}
+
+div.videoProgressBar .MuiLinearProgress-bar1Buffer {
+  transition-timing-function: cubic-bezier(0, 0.96, 0, 1.05);
+}
+
+div.videoProgressBar .MuiLinearProgress-bar2Buffer {
+  transition-timing-function: cubic-bezier(0, 0.96, 0, 1.05);
+}
+
+
+div.videoInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+div.videoInfo hr {
+  border-color:gray;
+  border-width: 1px;
+  width: 100%;
+}
+
+div.videoInfo div.uploaderInfo {
+  display: flex;
+  justify-content: flex-start;;
+  vertical-align: middle;
+  width: 25%;
+  margin: 1em;
+}
+
+
+div.videoInfo div.uploaderInfo > * {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+div.videoInfo h4{
+  margin-left: 2em;
+}
+
+div.videoInfo div.videoInfoDescription p{
+  padding-left: 6em;
+  padding-right: 24em;
+}
+
+div.relatedVideos {
+  display: inline-block;
+  width: 20%;
+  right: 0;
+  margin-top: 6em;
+  margin-left: 1em;
+}
+div.relatedVideo {
+  display: flex;
+  flex-direction: row;;
+  align-items: flex-start;
+  margin: 6px 0;
+}
+
+div.relatedVideo h4{
+  margin:0;
+}
+
+img.relatedThumb {
+  width: 168px;
+  height: 94px;
+}
+
+div.relatedVideoInfo {
+  padding-left: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+div.relatedVideoInfo p {
+  margin: 0;
+  padding: 0;
+}
+
+div.loadingCircle {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: 25% 50%;
+  position: fixed;
+  margin: auto auto;
+}
+
+
+
+
+
+
+
+
+div.loginPage {
+  padding-top: 8em;
+  padding-right: 30%;
+  padding-left: 30%;
+}
+
+div.loginForm {
+  background-color: #475664;
+  padding: 10%;
+}
+
+div.loginInput  {
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  margin: 2em 0;
+}
