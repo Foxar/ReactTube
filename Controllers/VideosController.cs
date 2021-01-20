@@ -19,7 +19,8 @@ namespace ReactTube.Controllers
 
         }
 
-
+        //Create video
+        //public ActionResult<OkResult> CreateVideo(Video)
 
         //Get video by base64
         [HttpGet("{id}", Name = "GetVideoByBase64")]

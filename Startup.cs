@@ -6,11 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReactTube.Data;
+using ReactTube.Models;
 
 namespace ReactTube
 {
@@ -28,7 +30,7 @@ namespace ReactTube
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ReactTubeContext>(opt => opt.UseSqlServer
+            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer
                 (Configuration.GetConnectionString("ReactTubeConnection")));
 
             services.AddControllers();
@@ -36,6 +38,12 @@ namespace ReactTube
             //services.AddScoped<IUserRepo, MockUsersRepo>();
             services.AddScoped<IUserRepo, SqlUsersRepo>();
             services.AddScoped<IVideoRepo, SqlVideosRepo>();
+
+            //Users identities
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
+
 
             // ********************
             // Setup CORS
@@ -62,7 +70,8 @@ namespace ReactTube
                 app.UseDeveloperExceptionPage();
 
             }
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseRouting();
             app.UseCors();
 

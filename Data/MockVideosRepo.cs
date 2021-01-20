@@ -43,5 +43,10 @@ namespace ReactTube.Data
         {
             throw new System.NotImplementedException();
         }
+
+        public void CreateVideo(Video video)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
