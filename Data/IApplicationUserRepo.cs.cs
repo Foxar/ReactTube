@@ -1,17 +1,15 @@
-using System;
 using System.Collections.Generic;
 using ReactTube.Models;
 
 namespace ReactTube.Data
 {
-    public interface IVideoRepo
+    public interface IApplicationUserRepo
     {
         bool SaveChanges();
 
         //IEnumerable<Video> GetAllCommands();
-        Video GetVideoById(int id);
-        Video GetVideoByGuid(Guid id);
-        void CreateVideo(Video video);
+        ApplicationUser GetApplicationUserById(string id);
+        void CreateApplicationUser(ApplicationUser user);
         //void CreateCommand(Command cmd);
         //void UpdateCommand(Command cmd);
         //void DeleteCommand(Command cmd);
