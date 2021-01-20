@@ -17,6 +17,8 @@ namespace ReactTube.Controllers
             _userrepo = userrepo;
         }
 
+
+
         //[HttpGet("{id}")]
         [HttpGet("{id}", Name = "GetUserById")]
         //[HttpGet]
@@ -25,6 +27,8 @@ namespace ReactTube.Controllers
             var useritem = _userrepo.GetUserById(id);
             return Ok(useritem);
         }
+
+
 
 
 

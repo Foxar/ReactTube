@@ -202,9 +202,6 @@ namespace ReactTube.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<int?>("UserProfileUserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -215,34 +212,7 @@ namespace ReactTube.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.HasIndex("UserProfileUserId");
-
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("ReactTube.Models.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("passwordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("temppassword")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("nvarchar(64)");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("ReactTube.Models.Video", b =>
@@ -251,14 +221,19 @@ namespace ReactTube.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<int>("Dislikes")
                         .HasColumnType("int");
 
                     b.Property<int>("Likes")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("desc")
                         .HasMaxLength(1024)
@@ -283,7 +258,7 @@ namespace ReactTube.Migrations
 
                     b.HasKey("VideoId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Videos");
                 });
@@ -339,25 +314,18 @@ namespace ReactTube.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ReactTube.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("ReactTube.Models.User", "UserProfile")
-                        .WithMany()
-                        .HasForeignKey("UserProfileUserId");
-
-                    b.Navigation("UserProfile");
-                });
-
             modelBuilder.Entity("ReactTube.Models.Video", b =>
                 {
-                    b.HasOne("ReactTube.Models.User", null)
+                    b.HasOne("ReactTube.Models.ApplicationUser", "AppUser")
                         .WithMany("Videos")
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AppUser");
                 });
 
-            modelBuilder.Entity("ReactTube.Models.User", b =>
+            modelBuilder.Entity("ReactTube.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Videos");
                 });

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ReactTube.Data;
 using ReactTube.Models;
+using Newtonsoft.Json.Serialization;
 
 namespace ReactTube
 {
@@ -33,11 +35,19 @@ namespace ReactTube
             services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer
                 (Configuration.GetConnectionString("ReactTubeConnection")));
 
-            services.AddControllers();
+            //services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             //services.AddScoped<IVideoRepo, MockVideosRepo>();
             //services.AddScoped<IUserRepo, MockUsersRepo>();
-            services.AddScoped<IUserRepo, SqlUsersRepo>();
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            //services.AddScoped<IUserRepo, SqlUsersRepo>();
             services.AddScoped<IVideoRepo, SqlVideosRepo>();
+            services.AddScoped<IApplicationUserRepo, SqlApplicationUserRepo>();
 
             //Users identities
             services.AddIdentity<ApplicationUser, IdentityRole>()

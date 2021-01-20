@@ -21,7 +21,10 @@ namespace ReactTube.Models
         [MaxLength(255)]
         public string thumbnailPath { get; set; }
         [Required]
-        public int UserId { get; set; }
+        //public int UserId { get; set; }
+        public string UserId { get; set; }
+        [Required]
+        public ApplicationUser AppUser { get; set; }
         [Required]
         public int Likes { get; set; }
         [Required]

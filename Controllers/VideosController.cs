@@ -1,8 +1,10 @@
 using System;
 using System.Threading;
+using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using ReactTube.Data;
+using ReactTube.Dtos;
 using ReactTube.Models;
 
 namespace ReactTube.Controllers
@@ -13,9 +15,11 @@ namespace ReactTube.Controllers
     public class VideosController : ControllerBase
     {
         private readonly IVideoRepo _videorepo;
-        public VideosController(IVideoRepo videoRepo)
+        private readonly IMapper _mapper;
+        public VideosController(IVideoRepo videoRepo, IMapper mapper)
         {
             _videorepo = videoRepo;
+            _mapper = mapper;
 
         }
 
@@ -24,14 +28,34 @@ namespace ReactTube.Controllers
 
         //Get video by base64
         [HttpGet("{id}", Name = "GetVideoByBase64")]
-        public ActionResult<Video> GetVideoByBase64(string id)
+        public ActionResult<VideoReadDto> GetVideoByBase64(string id)
+        {
+            //Conversion of base64 to Guid
+            Guid guid = Base64ToGuid(id);
+
+
+            var videoitem = _videorepo.GetVideoByGuid(guid);
+            if (videoitem == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+
+                var mapped = _mapper.Map<VideoReadDto>(videoitem);
+
+                return Ok(mapped);
+            }
+
+        }
+        /*public ActionResult<Video> GetVideoByBase64(string id)
         {
             //Conversion of base64 to Guid
             Guid guid = Base64ToGuid(id);
 
             var videoitem = _videorepo.GetVideoByGuid(guid);
             return Ok(videoitem);
-        }
+        }*/
 
         //Get video by guid
         //[HttpGet("{id}", Name = "GetVideoByGuid")]

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using ReactTube.Models;
 
 namespace ReactTube.Data
@@ -25,7 +26,10 @@ namespace ReactTube.Data
 
         public Video GetVideoByGuid(Guid guid)
         {
-            return _context.Videos.FirstOrDefault(p => p.VideoId == guid);
+            //return _context.Videos.FirstOrDefault(p => p.VideoId == guid);
+            return _context.Videos
+                    .Include(vid => vid.AppUser)
+                    .FirstOrDefault(p => p.VideoId == guid);
         }
 
         public Video GetVideoById(int id)

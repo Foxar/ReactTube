@@ -3,7 +3,7 @@ using ReactTube.Models;
 
 namespace ReactTube.Data
 {
-    class SqlUsersRepo : IUserRepo
+    /*class SqlUsersRepo : IUserRepo
     {
         private readonly ApplicationDbContext _context;
 
@@ -14,12 +14,12 @@ namespace ReactTube.Data
         }
         public User GetUserById(int id)
         {
-            return _context.UserProfiles.FirstOrDefault(p => p.UserId == id);
+            //return _context.UserProfiles.FirstOrDefault(p => p.UserId == id);
         }
 
         public bool SaveChanges()
         {
             throw new System.NotImplementedException();
         }
-    }
+    }*/
 }

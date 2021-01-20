@@ -17,7 +17,7 @@ namespace ReactTube.Models
             // For example, you can rename the ASP.NET Core Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
-        public DbSet<User> UserProfiles { get; set; }
+        //public DbSet<User> UserProfiles { get; set; }
         public DbSet<Video> Videos { get; set; }
     }
 }
