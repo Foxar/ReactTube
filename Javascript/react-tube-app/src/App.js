@@ -36,9 +36,9 @@ function App() {
           </Route>
           <Route path="/">
             <ul style={{ paddingTop: '6em' }}>
-              <li><Link to="/video/csEDurMjF0qsotHCLBmGUA">Video1</Link></li>
-              <li><Link to="/video/9xsY0SUeU0i02TR4GjojRQ">Video2</Link></li>
-              <li><Link to="/video/HLnG9rzZ8UC4r7Ejnpor0Q">Video3</Link></li>
+              <li><Link to="/video/7SXNeaGkn0GxZE5g0YblHg">Video1</Link></li>
+              <li><Link to="/video/Chs8v1hKJk27Q9NAq5-wtg">Video2</Link></li>
+              <li><Link to="/video/k_HSnEOTzkKgrA5GkqZ6yQ">Video3</Link></li>
               <li><Link to="/login">Log in</Link></li>
               <li><Link to="/register">Register</Link></li>
             </ul>

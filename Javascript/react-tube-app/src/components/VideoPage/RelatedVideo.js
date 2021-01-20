@@ -6,7 +6,7 @@ import VideoInfoDescription from './VideoInfoDescription';
 function RelatedVideo(props) {
     return (
         <div className="relatedVideo">
-            <a href="/video/csEDurMjF0qsotHCLBmGUA"><img className="relatedThumb" src={props.thumb} /></a>
+            <a href="/video/7SXNeaGkn0GxZE5g0YblHg"><img className="relatedThumb" src={props.thumb} /></a>
             <div className="relatedVideoInfo">
                 <h4>Video title</h4>
                 <p>channel</p>

@@ -30,15 +30,11 @@ class VideoPage extends React.Component {
             desc: video.desc,
             authorid: video.userId,
             views: video.views.toLocaleString(),
-            tempRelatedThumb: video.thumbnailPath
-        });
-        const user = await fetch('http://localhost:5000/api/v1/users/' + video.userId).then(response => response.json());
-        this.setState({
-            authorname: user.name,
+            tempRelatedThumb: video.thumbnailPath,
+            authorname: video.authorName,
             loaded: true
         });
-        console.log(user);
-
+        console.log(video);
     }
 
 
