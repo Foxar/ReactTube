@@ -29,6 +29,19 @@ namespace ReactTube.Models
         public int Likes { get; set; }
         [Required]
         public int Dislikes { get; set; }
+        public void Initialize()
+        {
+            this.Likes = 0;
+            this.Dislikes = 0;
+            this.UserId = "test";
+            GeneratePath();
+        }
+        public void GeneratePath()
+        {
+            this.path = "/videos/" + this.AppUser.Id + "/"
+            + DateTime.Now.ToString("s").Replace("-", "").Replace(":", "")
+            + "/videofile.mp4";
+        }
 
     }
 }

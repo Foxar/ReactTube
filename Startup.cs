@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using ReactTube.Data;
 using ReactTube.Models;
 using Newtonsoft.Json.Serialization;
+using ReactTube.Profiles;
 
 namespace ReactTube
 {
@@ -43,8 +44,23 @@ namespace ReactTube
             //services.AddScoped<IVideoRepo, MockVideosRepo>();
             //services.AddScoped<IUserRepo, MockUsersRepo>();
 
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            //services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            //Injecting AppDbContext into the automapper profile using Dependancy Injection
+            services.AddScoped(provider => new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AppUsersProfile(provider.GetService<ApplicationDbContext>()));
+            }).CreateMapper());
+            /*
+                        var mapperConfig = new MapperConfiguration(cfg =>
+                        {
+                            cfg.AddProfile<AppUsersProfile>();
+                        })
+                        Mapper.Initialize(cfg =>
+                        {
+                            cfg.AddProfile(new AppUsersProfile());
+                        });
+            */
             //services.AddScoped<IUserRepo, SqlUsersRepo>();
             services.AddScoped<IVideoRepo, SqlVideosRepo>();
             services.AddScoped<IApplicationUserRepo, SqlApplicationUserRepo>();

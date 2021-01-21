@@ -21,7 +21,7 @@ namespace ReactTube.Data
             {
                 throw new ArgumentNullException(nameof(video));
             }
-            _context.Add(video);
+            _context.Videos.Add(video);
         }
 
         public Video GetVideoByGuid(Guid guid)
@@ -39,7 +39,8 @@ namespace ReactTube.Data
 
         public bool SaveChanges()
         {
-            throw new System.NotImplementedException();
+            Console.WriteLine("Saving changes.");
+            return (_context.SaveChanges() >= 0);
         }
     }
 }

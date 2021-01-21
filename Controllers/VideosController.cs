@@ -24,7 +24,19 @@ namespace ReactTube.Controllers
         }
 
         //Create video
-        //public ActionResult<OkResult> CreateVideo(Video)
+        [HttpPost]
+        public ActionResult<VideoReadDto> CreateVideo(VideoCreateDto videoCreateDto)
+        {
+            var videoModel = _mapper.Map<Video>(videoCreateDto);
+            videoModel.Initialize();
+            Console.WriteLine("Creating video...");
+            _videorepo.CreateVideo(videoModel);
+            if (_videorepo.SaveChanges())
+                Console.Write("Successfully updated.");
+            else
+                Console.Write("Failed to update.");
+            return Ok(videoModel);
+        }
 
         //Get video by base64
         [HttpGet("{id}", Name = "GetVideoByBase64")]
