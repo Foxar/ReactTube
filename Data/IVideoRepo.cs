@@ -11,6 +11,7 @@ namespace ReactTube.Data
         //IEnumerable<Video> GetAllCommands();
         Video GetVideoById(int id);
         Video GetVideoByGuid(Guid id);
+        IEnumerable<Video> GetRandomVideos(int count);
         void CreateVideo(Video video);
         //void CreateCommand(Command cmd);
         //void UpdateCommand(Command cmd);

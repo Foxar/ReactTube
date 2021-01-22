@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using AutoMapper;
 using Microsoft.AspNetCore.Cors;
@@ -36,6 +37,12 @@ namespace ReactTube.Controllers
             else
                 Console.Write("Failed to update.");
             return Ok(videoModel);
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<VideoReadDto>> GetVideos()
+        {
+            return Ok(_videorepo.GetRandomVideos(10));
         }
 
         //Get video by base64

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ReactTube.Models;
@@ -35,6 +36,11 @@ namespace ReactTube.Data
         public Video GetVideoById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<Video> GetRandomVideos(int count)
+        {
+            return (_context.Videos.OrderBy(r => Guid.NewGuid()).Take(count).ToList());
         }
 
         public bool SaveChanges()
