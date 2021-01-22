@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using AutoMapper;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using ReactTube.Data;
 using ReactTube.Dtos;
@@ -17,10 +19,12 @@ namespace ReactTube.Controllers
     {
         private readonly IVideoRepo _videorepo;
         private readonly IMapper _mapper;
-        public VideosController(IVideoRepo videoRepo, IMapper mapper)
+        private readonly IWebHostEnvironment _env;
+        public VideosController(IVideoRepo videoRepo, IMapper mapper, IWebHostEnvironment env)
         {
             _videorepo = videoRepo;
             _mapper = mapper;
+            _env = env;
 
         }
 
@@ -42,7 +46,22 @@ namespace ReactTube.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<VideoReadDto>> GetVideos()
         {
-            return Ok(_videorepo.GetRandomVideos(10));
+            IEnumerable<Video> videoList = _videorepo.GetRandomVideos(10);
+            List<VideoReadDto> videoDtoList = new List<VideoReadDto>();
+            foreach (Video v in videoList)
+            {
+                //Weird bug here, investigate later
+                var videoDto = _mapper.Map<VideoReadDto>(v);
+                Console.WriteLine("VideoDto authorname0:");
+                Console.WriteLine(videoDto.AuthorName);
+                videoDto.id = GuidToBase64(v.VideoId);
+                if (System.IO.File.Exists(_env.ContentRootPath + "/Javascript/react-tube-app/public" + (videoDto.path)))
+                    videoDtoList.Add(videoDto);
+                Console.WriteLine("VideoDto authorname:");
+                Console.WriteLine(videoDto.AuthorName);
+            }
+
+            return Ok(videoDtoList);
         }
 
         //Get video by base64
@@ -64,6 +83,8 @@ namespace ReactTube.Controllers
             {
 
                 var mapped = _mapper.Map<VideoReadDto>(videoitem);
+                Console.WriteLine("VideoDto authorname:");
+                Console.WriteLine(mapped.AuthorName);
 
                 return Ok(mapped);
             }

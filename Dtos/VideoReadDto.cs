@@ -12,5 +12,6 @@ namespace ReactTube.Dtos
         public int likes { get; set; }
         public int dislikes { get; set; }
         public string AuthorName { get; set; }
+        public string id { get; set; }
     }
 }

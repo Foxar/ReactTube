@@ -235,3 +235,18 @@ div.uploadForm, form.uploadForm {
   text-align: center;
   margin: 2em 0;
 }
+
+
+
+
+div.homePage{
+  padding-top: 6em;
+  display: flex;
+  flex-direction: row;
+}
+
+div.homePage div.relatedVideo{
+  margin: 1em;
+  padding: 1em;
+
+}
