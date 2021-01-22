@@ -199,3 +199,39 @@ div.loginInput  {
   flex-direction: column;
   margin: 2em 0;
 }
+
+
+div.headerUpload {
+  text-align: center;
+}
+
+
+div.videoUploadDesc {
+  display: block;
+  width: 100%;
+}
+
+div.uploadPage {
+  padding-top: 8em;
+  padding-right: 30%;
+  padding-left: 30%;
+}
+
+  div.uploadForm {
+    margin-top: 5em;
+  }
+div.uploadForm, form.uploadForm {
+  background-color: #475664;
+  padding: 3%;
+  display:flex;
+  flex-direction: column;
+}
+
+#contained-button-file, #contained-button-submit {
+  display: none;
+}
+
+.uploadInput, span.uploadInput{
+  text-align: center;
+  margin: 2em 0;
+}

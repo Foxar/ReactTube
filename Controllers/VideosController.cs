@@ -26,7 +26,7 @@ namespace ReactTube.Controllers
 
         //Create video
         [HttpPost]
-        public ActionResult<VideoReadDto> CreateVideo(VideoCreateDto videoCreateDto)
+        public ActionResult<VideoReadDto> CreateVideo([FromForm] VideoCreateDto videoCreateDto)
         {
             var videoModel = _mapper.Map<Video>(videoCreateDto);
             videoModel.Initialize();
@@ -49,6 +49,7 @@ namespace ReactTube.Controllers
         [HttpGet("{id}", Name = "GetVideoByBase64")]
         public ActionResult<VideoReadDto> GetVideoByBase64(string id)
         {
+            id.ToLower();
             //Conversion of base64 to Guid
             Guid guid = Base64ToGuid(id);
 
@@ -56,6 +57,7 @@ namespace ReactTube.Controllers
             var videoitem = _videorepo.GetVideoByGuid(guid);
             if (videoitem == null)
             {
+                Console.WriteLine("Video " + id + " not found!");
                 return NotFound();
             }
             else

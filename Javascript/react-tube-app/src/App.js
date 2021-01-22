@@ -3,6 +3,7 @@ import VideoPlayer from './components/VideoPlayer/VideoPlayer'
 import VideoPage from './components/VideoPage/VideoPage'
 import LoginPage from './components/LoginPage/LoginPage'
 import RegisterPage from './components/RegisterPage/RegisterPage'
+import VideoUploadPage from './components/VideoUploadPage/VideoUploadPage'
 import Header from './components/Header/Header'
 import {
   BrowserRouter as Router,
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/testvideopage">
             <VideoPlayer />
+          </Route>
+          <Route path="/videoupload">
+            <VideoUploadPage />
           </Route>
           <Route path="/">
             <ul style={{ paddingTop: '6em' }}>

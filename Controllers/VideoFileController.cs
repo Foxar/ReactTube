@@ -37,6 +37,9 @@ namespace ReactTube.Controllers
         [HttpPost]
         public async Task<ActionResult> UploadVideoFile([FromForm] VideoFileUploadDto fileUploadDto)
         {
+            Console.WriteLine("POST Request for videofile upload");
+            Console.WriteLine(fileUploadDto.path);
+            Console.WriteLine(fileUploadDto.file.Length);
             if (fileUploadDto == null || fileUploadDto.file == null)
                 return BadRequest("No file uploaded.");
             if (fileUploadDto.path == null)
